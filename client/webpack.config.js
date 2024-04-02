@@ -1,11 +1,10 @@
+// Import required files and packages 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
+// Sets up our build? 
 module.exports = () => {
   return {
     mode: 'development',
@@ -18,12 +17,49 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        // No manual script in index b/c this will put it in automatically
+        template: "./index.html",
+        title: "Webpack Plugin"
+      }),
+      // Add and configure workbox plugins for a service worker and manifest file.
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "service-worker.js"
+      }),
+      new WebpackPwaManifest({
+        name: "Text-Editor-App",
+        short_name: "TEA",
+        description: "App that allows on and offline text editing",
+        background_color: "#ffffff",
+        crossorigin: "use-credentials",
+        icons: [
+          {
+            src: path.resolve("./src/images/logo.png"),
+            sizes: [96, 128, 192, 256, 384, 512] // Multiple image sizes
+          }
+        ]
+      })
     ],
-
     module: {
       rules: [
-        
+        // Add CSS loaders and babel to webpack.
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
+        // Babel loader takes from es6 to es5
+        {
+          test: /\.m?js$/,
+          // Excludes anything in these folders
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"]
+            }
+          }
+        },
       ],
     },
   };
