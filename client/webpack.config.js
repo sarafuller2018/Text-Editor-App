@@ -10,7 +10,9 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
+      install: './src/js/install.js',
+      header: "./src/js/header.js",
+      editor: "./src/js/editor.js"
     },
     output: {
       filename: '[name].bundle.js',
@@ -35,11 +37,12 @@ module.exports = () => {
         crossorigin: "use-credentials",
         icons: [
           {
-            src: path.resolve("./src/images/logo.png"),
-            sizes: [96, 128, 192, 256, 384, 512] // Multiple image sizes
-          }
-        ]
-      })
+            src: path.resolve("src/images/logo.png"),
+            sizes: [96, 128, 192, 256, 384, 512], // Multiple image sizes
+            destination: path.join("assets", "icons"),
+          },
+        ],
+      }),
     ],
     module: {
       rules: [

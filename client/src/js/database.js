@@ -29,7 +29,7 @@ console.log("Your data has been saved to the database", result);
 export const getDb = async () => {
   console.log("GETting all from the database");
   const jateDb = await openDB("jate", 1);
-  const transaction = jateDb.transaction("todos", "readonly");
+  const transaction = jateDb.transaction("jate", "readonly");
   const store = transaction.objectStore("jate");
   const request = store.getAll();
   const result = await request;
