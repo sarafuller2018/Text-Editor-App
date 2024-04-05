@@ -30,11 +30,14 @@ module.exports = () => {
         swDest: "service-worker.js"
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
         name: "Text-Editor-App",
         short_name: "TEA",
         description: "App that allows on and offline text editing",
         background_color: "#ffffff",
         crossorigin: "use-credentials",
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve("src/images/logo.png"),
