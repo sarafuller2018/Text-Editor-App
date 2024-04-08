@@ -29,7 +29,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 // Implements asset caching
 registerRoute(
   ({ request }) => ["style", "script", "worker"].includes(request.destination),
-  // moves this stuff into asset cache - info about manifest
+  // moves these items into asset cache - info about manifest
   new StaleWhileRevalidate({
     cacheName: "asset-cache",
     plugins: [
