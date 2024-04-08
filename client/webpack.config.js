@@ -4,15 +4,13 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// Sets up our build? 
+// Sets up our build
 module.exports = () => {
   return {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js',
-      header: "./src/js/header.js",
-      editor: "./src/js/editor.js"
     },
     output: {
       filename: '[name].bundle.js',
@@ -27,7 +25,7 @@ module.exports = () => {
       // Add and configure workbox plugins for a service worker and manifest file.
       new InjectManifest({
         swSrc: "./src-sw.js",
-        swDest: "service-worker.js"
+        swDest: "src-sw.js"
       }),
       new WebpackPwaManifest({
         fingerprints: false,
@@ -36,8 +34,8 @@ module.exports = () => {
         description: "App that allows on and offline text editing",
         background_color: "#ffffff",
         crossorigin: "use-credentials",
-        start_url: './',
-        publicPath: './',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
             src: path.resolve("src/images/logo.png"),
