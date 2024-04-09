@@ -4,7 +4,7 @@ https://text-editor-app-7ozz.onrender.com/
 
 ## Description
 
-This is a text editor application that runs in the browser and is designed to persist data and work offline. It is a single-page web application that functions as a Progressive Web Applicaiton (PWA). 
+This is a text editor application that runs in the browser and is designed to persist data and work offline. It is a single-page web application that functions as a Progressive Web Application (PWA). 
 
 ## Installation
 
